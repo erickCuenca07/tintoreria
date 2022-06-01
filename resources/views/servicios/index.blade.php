@@ -51,8 +51,7 @@
             <form class="form-group" action="{{route('servicios.store')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="disabledTextInput">Id</label>
-                    <input type="text" class="form-control"  placeholder="El id se crea solo " name="servicio_id" disabled>
+                    <input type="hidden" class="form-control"  placeholder="El id se crea solo " name="servicio_id" disabled>
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Nombre</label>

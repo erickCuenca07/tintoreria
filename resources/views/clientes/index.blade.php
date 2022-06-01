@@ -60,7 +60,6 @@
             <form class="form-group" action="{{route('clientes.store')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                   
                     <input type="hidden" class="form-control"  placeholder="El id se crea solo " name="cliente_id" disabled>
                 </div>
                 <div class="form-group">

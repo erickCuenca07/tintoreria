@@ -56,8 +56,7 @@
             <form class="form-group" action="{{route('prendas.store')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="disabledTextInput">Id</label>
-                    <input type="text" class="form-control"  placeholder="El id se crea solo " name="prenda_id" disabled>
+                    <input type="hidden" class="form-control"  placeholder="El id se crea solo " name="prenda_id" disabled>
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Nombre</label>
