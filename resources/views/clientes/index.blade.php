@@ -51,7 +51,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Creacion de Articulos</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Creacion de clientes</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -60,8 +60,8 @@
             <form class="form-group" action="{{route('clientes.store')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="disabledTextInput">Cliente Id</label>
-                    <input type="text" class="form-control"  placeholder="El id se crea solo " name="cliente_id" disabled>
+                   
+                    <input type="hidden" class="form-control"  placeholder="El id se crea solo " name="cliente_id" disabled>
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Nif</label>

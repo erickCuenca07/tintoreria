@@ -13,8 +13,8 @@ class Pedido extends Model
     public $incrementing = true;
     public $timestamps = false;
 
-    public function cliente(){
-        return $this->belongsTo(Cliente::class,'numero_pedido','cliente_id');
+    public function clientes(){
+        return $this->belongsTo(Cliente::class,'cliente_id','cliente_id');
     }
 
     public function lineas(){

@@ -45,9 +45,15 @@ class PedidoController extends Controller
         $servicio=Servicio::all();
         $cliente=Cliente::all();
         return view('factura',['pedido'=>$pedido,'cliente'=>$cliente,'prenda'=>$prenda,'servicio'=>$servicio]);
-        // return redirect()->back();
     }
-
+    public function edit($num)
+    {
+        $pedido=Pedido::find($num);
+       $prenda=Prenda::all();
+       $servicio=Servicio::all();
+      // var_dump($factura);
+        return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio]);
+    }
     public function show($id)
     {
         //

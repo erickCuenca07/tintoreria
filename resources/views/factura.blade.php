@@ -13,7 +13,7 @@
                 </div>      
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Cliente</label>
-                    <input type="text" name="pedido_id" class="form-control" value="{{$pedido->cliente_id}}">
+                    <input type="text" name="pedido_id" class="form-control" value="{{$pedido->clientes->nombre}}">
                   </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha Actual</label>
@@ -116,8 +116,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- esta parte no funciona
-                porque intento listar una linea de pedido que todavia no esta asociado y no se como hacer para que se muestre despues de añadir una prenda --}}
+                {{-- esta parte no funciona --}}
             {{-- @foreach ($pedido->lineas as $linea)
                     <tr>
                         <th scope="row">{{$linea->prenda_id}}</th>

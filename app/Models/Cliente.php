@@ -14,6 +14,6 @@ class Cliente extends Model
     public $timestamps = false;
 
     public function pedido(){
-        return $this->hasMany('App\Models\Pedido');
+        return $this->hasMany('App\Models\Pedido','numero_pedido');
     }
 }

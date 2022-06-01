@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetallesPedidoTable extends Migration
+class CreateLineasPedidoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateDetallesPedidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('detalles_pedido', function (Blueprint $table) {
-            $table->integer('detalles_pedido_id')->primary();
+        Schema::create('lineas_pedido', function (Blueprint $table) {
+            $table->integer('linea_pedido_id')->primary();
             $table->integer('numero_pedido')->nullable();
             $table->integer('prenda_id')->nullable();
             $table->decimal('precio', 5, 0)->nullable();
@@ -34,6 +34,6 @@ class CreateDetallesPedidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detalles_pedido');
+        Schema::dropIfExists('lineas_pedido');
     }
 }

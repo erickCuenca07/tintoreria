@@ -21,18 +21,12 @@
         <tbody>
             @foreach ($pedido as $pedido)
                 <tr>
-                    <td scope="row">{{$pedido->numero_pedido}}</td>
-                    <td>{{$pedido->cliente->nombre}}</td>
+                    <td><a href="{{route('pedidos.edit',$pedido->numero_pedido)}}">{{$pedido->numero_pedido}}</a></td>
+                    <td>{{$pedido->clientes->nombre}}</td>
                     <td>{{$pedido->fecha_recibo}}</td>
                     <td>{{$pedido->domicilio}}</td>
                     <td>{{$pedido->fecha_prevista}}</td>
                     <td>{{$pedido->fecha_entregado}}</td>
-                    <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$pedido->prenda_id}}">Editar</button>
-                        <form action="{{route('pedidos.destroy',$pedido->numero_pedido)}}" method="post" enctype="multipart/form-data">   
-                          @csrf
-                          @method('delete')
-                          <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
-                        </form></td>
                     </tr>
             @endforeach 
         </tbody>

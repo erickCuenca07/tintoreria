@@ -16,7 +16,7 @@ class CreateTarifaTable extends Migration
         Schema::create('tarifa', function (Blueprint $table) {
             $table->integer('prenda_id');
             $table->integer('servicio_id');
-            $table->integer('precio');
+            $table->decimal('precio', 5, 0);
             
             $table->foreign('prenda_id', 'tarifa_ibfk_1')->references('prenda_id')->on('prenda');
             $table->foreign('servicio_id', 'tarifa_ibfk_2')->references('servicio_id')->on('servicio');
