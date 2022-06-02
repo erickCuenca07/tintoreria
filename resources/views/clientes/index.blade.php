@@ -33,11 +33,7 @@
                             <td>{{$cliente->provincia}}</td>
                             <td>{{$cliente->municipio}}</td>
                             <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$cliente->cliente_id}}">Editar</button>
-                                <form action="{{route('clientes.destroy',$cliente->cliente_id)}}" method="post" enctype="multipart/form-data">   
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
-                                </form></td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
                         @include('clientes.actualizar')
                     @endforeach 
@@ -46,9 +42,34 @@
         </div>
     </div>
 
+    <!-- Modal para elmiinar-->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Eliminar Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('clientes.destroy',$cliente->cliente_id)}}" method="post" enctype="multipart/form-data">   
+                @csrf
+                @method('delete')
+                ¿Estas seguro que quieres eliminar este cliente?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
 <!-- Modal PAra crear-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de clientes</h5>
