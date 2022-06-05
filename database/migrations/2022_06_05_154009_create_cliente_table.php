@@ -18,8 +18,8 @@ class CreateClienteTable extends Migration
             $table->string('nif', 45);
             $table->string('nombre', 50);
             $table->integer('telefono');
-            $table->string('email', 50);
-            $table->string('domicilio', 45)->nullable();
+            $table->string('email');
+            $table->string('domicilio', 50);
             $table->string('provincia', 50);
             $table->string('municipio', 50);
         });

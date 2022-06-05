@@ -12,6 +12,7 @@
                 <tr>
                 <th scope='col' class='center'>id</th>
                 <th scope='col' class='center'>Nombre</th>
+                <th scope='col' class='center'>Foto</th>
                 <th scope='col' class='center'>Operacionces</th>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                     <tr>
                         <th scope="row">{{$categoria->categoria_id}}</th>
                         <td>{{$categoria->nombre}}</td>
+                        <td><img src="{{$categoria->foto}}" width="70"></td>
                         <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$categoria->categoria_id}}">Editar</button>
                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
@@ -74,6 +76,11 @@
                 <div class="form-group">
                     <label for="disabledTextInput">Nombre</label>
                     <input type="text" class="form-control"  placeholder="Nombre de la categoria" name="nombre" required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Foto</label>
+                  <input type="file" class="form-control" name="foto" required>
+              </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">

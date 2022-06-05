@@ -20,6 +20,10 @@
                     <label for="disabledTextInput">Nombre</label>
                     <input type="text" class="form-control"  value="{{$categoria->nombre}}" name="nombre" >
                 </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Foto</label>
+                    <input type="file" class="form-control" name="foto" value="{{$categoria->foto}}" >
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="Actulizar" value="Actulizar">

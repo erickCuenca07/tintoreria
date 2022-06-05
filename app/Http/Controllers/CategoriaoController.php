@@ -25,6 +25,13 @@ class CategoriaoController extends Controller
 
         $categoria->categoria_id = $request->categoria_id;
         $categoria->nombre = $request->nombre;
+        if( $request->hasFile('foto') ) {
+            $file = $request->file('foto');
+            $destinationPath = 'img/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $uploadSuccess = $request->file('foto')->move($destinationPath, $filename);
+            $categoria->foto = $destinationPath . $filename;
+        }
 
         $categoria->save();
 
@@ -48,6 +55,13 @@ class CategoriaoController extends Controller
         $categoria_id->categoria_id = $request->categoria_id;
         $categoria_id->nombre = $request->nombre;
 
+        if( $request->hasFile('foto') ) {
+            $file = $request->file('foto');
+            $destinationPath = 'img/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $uploadSuccess = $request->file('foto')->move($destinationPath, $filename);
+            $categoria_id->foto = $destinationPath . $filename;
+        }
         $categoria_id->update();
 
         return redirect()->back();
