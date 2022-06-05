@@ -33,6 +33,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{route('prendas.index')}}">Arituclos</a>
+          <a class="dropdown-item" href="{{route('categorias.index')}}">Categorias</a>
           <a class="dropdown-item" href="{{route('servicios.index')}}">Servicio</a>
           <a class="dropdown-item" href="{{route('tarifas.index')}}">Tarifas</a>
           <a class="dropdown-item" href="{{route('clientes.index')}}">Clientes</a>

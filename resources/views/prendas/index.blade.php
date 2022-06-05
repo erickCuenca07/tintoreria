@@ -18,6 +18,7 @@
                 <th scope='col' class='center'>Nombre</th>
                 <th scope='col' class='center'>Descripcion</th>
                 <th scope='col' class='center'>foto</th>
+                <th scope='col' class='center'>Categoria</th>
                 <th scope='col' class='center'>Operacionces</th>
                 </tr>
             </thead>
@@ -28,6 +29,7 @@
                         <td>{{$prenda->nombre}}</td>
                         <td>{{$prenda->descripcion}}</td>
                         <td><img src="{{$prenda->foto}}" width="70"></td>
+                        <td>{{$prenda->categoria->nombre}}</td>
                         <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$prenda->prenda_id}}">Editar</button>
                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
@@ -91,6 +93,15 @@
                     <label for="exampleFormControlTextarea1">Foto</label>
                     <input type="file" class="form-control" name="foto" required>
                 </div>
+                <div class="form-group">
+                  <label for="disabledTextInput">Categoria</label>
+                      <select name='categoria' id='categoria' class="custom-select">
+                          <option  selected>Elige una Categoria</option>
+                               @foreach ($categoria as $categoria)
+                                  <option value="{{$categoria->categoria_id}}">{{$categoria->nombre}}</option>
+                              @endforeach
+                      </select>
+              </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
@@ -100,7 +111,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 
   @section('js')

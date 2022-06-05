@@ -8,6 +8,7 @@ use App\Http\Controllers\TarifaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\LineaPedidoController;
+use App\Http\Controllers\CategoriaoController;
 
 
 /*
@@ -29,6 +30,7 @@ Route::resource('servicios',ServicioController::class);
 Route::resource('tarifas',TarifaController::class);
 Route::resource('clientes',ClienteController::class);
 Route::resource('pedidos',PedidoController::class);
+Route::resource('categorias',CategoriaoController::class);
 Route::resource('lineas',LineaPedidoController::class);
 //rutas del ajax
 Route::post('ajax/prendas',[AjaxController::class,'prenda'])->name('ajax.prenda');

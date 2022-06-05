@@ -28,6 +28,10 @@
                     <label for="exampleFormControlTextarea1">Foto</label>
                     <input type="file" class="form-control" name="foto" value="{{$prenda->foto}}" >
                 </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">Categoria</label>
+                        <input type="text" class="form-control"  value="{{$prenda->categoria->nombre}}"
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="Actulizar" value="Actulizar">

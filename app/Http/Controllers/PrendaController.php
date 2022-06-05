@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prenda;
+use App\Models\Categoria;
 
 class PrendaController extends Controller
 {
@@ -11,7 +12,8 @@ class PrendaController extends Controller
     public function index()
     {
         $prendas=Prenda::all();
-        return view('prendas.index',compact('prendas'));
+        $categoria=Categoria::all();
+        return view('prendas.index',compact('prendas','categoria'));
     }
 
   
@@ -30,6 +32,7 @@ class PrendaController extends Controller
             $uploadSuccess = $request->file('foto')->move($destinationPath, $filename);
             $prenda->foto = $destinationPath . $filename;
         }
+        $prenda->categoria_id =$request->categoria;
         $prenda->save();
 
         return redirect()->back();
