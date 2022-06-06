@@ -44,7 +44,8 @@ class PedidoController extends Controller
         $prenda=Prenda::all();
         $servicio=Servicio::all();
         $cliente=Cliente::all();
-        return view('factura',['pedido'=>$pedido,'cliente'=>$cliente,'prenda'=>$prenda,'servicio'=>$servicio]);
+        $linea=LineaPedido::all();
+        return view('factura',['pedido'=>$pedido,'cliente'=>$cliente,'prenda'=>$prenda,'servicio'=>$servicio,'linea'=>$linea]);
     }
     public function edit($num)
     {

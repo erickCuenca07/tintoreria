@@ -116,8 +116,8 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- esta parte no funciona --}}
-                @foreach ($linea as $key)
+                {{-- esta parte falta por mejorar funciona --}}
+                @foreach ($pedido->lineas as $key)
                 <tr>
                     <td>{{$key->prenda->nombre}}</td>
                     <td>{{$key->servicio->nombre}}</td>

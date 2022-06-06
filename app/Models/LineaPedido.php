@@ -14,7 +14,7 @@ class LineaPedido extends Model
     public $timestamps = false;
 
     public function pedido(){
-        return $this->hasMany('App\Models\Pedido');
+        return $this->belongsTo(Pedido::class,'numero_pedido','numero_pedido');
     }
     public function prenda(){
         return $this->belongsTo(Prenda::class,'prenda_id','prenda_id');
