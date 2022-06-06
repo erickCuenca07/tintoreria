@@ -25,6 +25,10 @@ class Prenda extends Model
         return $this->hasMany('App\Models\Servicio');
     }
 
+    public function pedido(){
+        return $this->hasMany('App\Models\Pedido');
+    }
+
     public function categoria(){
         return $this->belongsTo(Categoria::class,'categoria_id','categoria_id');
     }

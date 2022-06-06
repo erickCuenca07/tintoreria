@@ -7,7 +7,7 @@ use App\Models\Pedido;
 use App\Models\Cliente;
 use App\Models\Prenda;
 use App\Models\Servicio;
-
+use App\Models\LineaPedido;
 
 class PedidoController extends Controller
 {
@@ -51,8 +51,8 @@ class PedidoController extends Controller
         $pedido=Pedido::find($num);
        $prenda=Prenda::all();
        $servicio=Servicio::all();
-      // var_dump($factura);
-        return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio]);
+       $linea=LineaPedido::all();
+        return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio,'linea'=>$linea]);
     }
     public function show($id)
     {

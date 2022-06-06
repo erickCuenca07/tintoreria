@@ -17,9 +17,9 @@ class CreatePedidoTable extends Migration
             $table->integer('numero_pedido')->primary();
             $table->integer('cliente_id')->nullable();
             $table->string('fecha_recibo', 45)->nullable();
-            $table->string('a_domicilio', 45)->nullable();
-            $table->string('a_ciudad', 45)->nullable();
-            $table->string('a_provincia', 45)->nullable();
+            $table->string('domicilio', 45)->nullable();
+            $table->string('municipio', 45)->nullable();
+            $table->string('provincia', 45)->nullable();
             $table->string('fecha_prevista', 45)->nullable();
             $table->string('fecha_entregado', 45)->nullable();
             

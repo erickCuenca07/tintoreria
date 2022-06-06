@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class LineaPedido extends Model
 {
     use HasFactory;
-    protected $table = 'lineas_pedido';
+    protected $table = 'linea_pedido';
     protected $primaryKey = 'linea_pedido_id';
     public $incrementing = true;
     public $timestamps = false;
 
     public function pedido(){
-        return $this->belongsTo('App\Models\Pedido');
+        return $this->hasMany('App\Models\Pedido');
     }
     public function prenda(){
-        return $this->belongsTo('App\Models\Prenda');
+        return $this->belongsTo(Prenda::class,'prenda_id','prenda_id');
     }
 
     public function servicio(){
-        return $this->belongsTo('App\Models\Servicio');
+        return $this->belongsTo(Servicio::class,'servicio_id','servicio_id');
     }
 }

@@ -23,7 +23,7 @@
               </div>
             <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Fecha Recogida</label>
-                <input  type="date" name='fecha_actual' id='fecha_actual' class="form-control"> 
+                <input  type="text" name='fecha_actual' id='fecha_actual' class="form-control" value="{{ $ldate = date('d-m-Y')}}" > 
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Fecha prevista</label>
@@ -115,19 +115,19 @@ $(document).ready(function(){
 		
 	$("#cliente_id").change(function(){
         $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         var id=$("select[name=cliente_id]").val();
         if (id!=0){
         $.ajax({
             url: '{{route('ajax.cliente')}}',
-            method:'post',
+            method:'GET',
             data:{'cliente_id':id},
             success:function(data){
                 var datos=JSON.parse(data);
-                $("#cliente_id").val(datos.cliente_id);
+                console.log(datos);
                 $("#domicilio").val(datos.domicilio);
                 $("#provincia").val(datos.provincia);
                 $("#municipio").val(datos.municipio);  
@@ -137,6 +137,6 @@ $(document).ready(function(){
             alert("Cliente no seleccionado");
         }
         });
-    });
+});
 </script>
 @endsection

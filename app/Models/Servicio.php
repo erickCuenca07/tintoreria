@@ -20,5 +20,9 @@ class Servicio extends Model
     public function lineas(){
         return $this->hasMany('App\Models\LineaPedido');
     }
+
+    public function pedido(){
+        return $this->hasMany('App\Models\Pedido');
+    }
 }
 

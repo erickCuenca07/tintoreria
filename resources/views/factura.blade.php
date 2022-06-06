@@ -17,7 +17,7 @@
                   </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha Actual</label>
-                    <input  type="date" name='fecha' id='fecha_actual' value="{{$pedido->fecha_recibo}}" class="form-control"> 
+                    <input  type="text" name='fecha' id='fecha_actual' value="{{$pedido->fecha_recibo}}" class="form-control"> 
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha prevista</label>
@@ -117,20 +117,14 @@
             </thead>
             <tbody>
                 {{-- esta parte no funciona --}}
-                {{-- @foreach ($pedido->lineas() as $linea)
+                @foreach ($linea as $key)
                 <tr>
-                    <th scope="row">{{$linea->prenda_id}}</th>
-                    <td>{{$linea->servicio_id}}</td>
-                    <td>{{$linea->cantidad}}</td>
-                    <td>{{$linea->precio}}</td>
-                    <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$linea->prenda_id}}">Editar</button>
-                        <form action="" method="post" enctype="multipart/form-data">   
-                          @csrf
-                          @method('delete')
-                          <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
-                        </form></td>
+                    <td>{{$key->prenda->nombre}}</td>
+                    <td>{{$key->servicio->nombre}}</td>
+                    <td>{{$key->cantidad}}</td>
+                    <td>{{$key->precio}}</td>
                     </tr>
-                @endforeach  --}}
+                @endforeach 
             </tbody>
         </table>
     </div>

@@ -18,6 +18,13 @@ class Pedido extends Model
     }
 
     public function lineas(){
-        return $this->hasMany('App\Models\LineaPedido');
+        return $this->belongsTo(LineaPedido::class,'linea_pedido_id','cliente_id');
+    }
+
+    public function prenda(){
+        return $this->belongsTo(Prenda::class,'prenda_id','prenda_id');
+    }
+    public function servicios(){
+        return $this->belongsTo(Servicio::class,'servicio_id','servicio_id');
     }
 }
