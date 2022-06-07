@@ -3,10 +3,10 @@
     
 @section('content')
 <div class="container">
-<div class="form-row">    
+<div class="row">    
     <form class="form-group" action="{{route('pedidos.store')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div class="form-row">
+        <div class="row">
             <input type="hidden" name="pedido_id"  class="form-control" >     
             <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Cliente</label>
@@ -19,7 +19,7 @@
               </div>
               <div class="col-md-3 mb-3">
                 <label for="validationDefault01">O Puedes</label><br>
-                <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal">Crear Cliente</button>
+                <button type="button" class="btn btn-primary form-control" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Cliente</button>
               </div>
             <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Fecha Recogida</label>
@@ -30,7 +30,7 @@
                 <input type="date" name="fecha_prevista" class="form-control">
             </div>
         </div>
-        <div class="form-row">
+        <div class="row">
             <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Fecha de Entreda</label>
                 <input type="text" name="fecha_entrega" class="form-control">
@@ -58,9 +58,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de Clientes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('clientes.store')}}" method="post" enctype="multipart/form-data">
@@ -97,7 +95,7 @@
                     <input type="text" class="form-control"  placeholder="Municipio del cliente..." name="municipio" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
                 

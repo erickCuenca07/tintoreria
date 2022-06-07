@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <h1>Tarifas Disponibles</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Tarifa</button>
+    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Tarifa</button>
     <br><br>
     <div class='row'>
         <table id="tabla" class='table'>
@@ -22,7 +22,7 @@
                         <td scope="row">{{$tarifa->prendas->nombre}}</td>
                         <td>{{$tarifa->servicios->nombre}}</td>
                         <td>{{$tarifa->precio}}</td>
-                        <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$tarifa->prenda_id}}">Editar</button>
+                        <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$tarifa->prenda_id}}">Editar</button>
                             <form action="" method="post" enctype="multipart/form-data">   
                               @csrf
                               @method('delete')
@@ -42,9 +42,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de Tarifas</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('tarifas.store')}}" method="post" enctype="multipart/form-data">
@@ -72,7 +70,7 @@
                     <input class="form-control"  rows="3" placeholder="Precio..." name="precio" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
                 

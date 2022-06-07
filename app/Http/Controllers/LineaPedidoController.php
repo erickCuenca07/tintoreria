@@ -51,11 +51,24 @@ class LineaPedidoController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $id = LineaPedido::find($id);
+        $id->linea_pedido_id = $request->linea_pedido_id;
+        $id->numero_pedido = $request->numero_pedido;
+        $id->prenda_id = $request->prenda_id;
+        $id->servicio_id = $request->servicio;
+        $id->cantidad = $request->cantidad;
+        $id->precio = $request->precio;
+
+        $id->update();
+
+        return redirect()->back();
     }
 
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        $id = LineaPedido::find($id);
+        $id->delete();
+
+        return redirect()->back();
     }
 }

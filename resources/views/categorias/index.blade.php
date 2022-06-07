@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <h1>Categorias Disponibles</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Categoria</button>
+    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Categoria</button>
     <br><br>
     <div class='row'>
         <table id="tabla" class='table'>
@@ -22,8 +22,8 @@
                         <th scope="row">{{$categoria->categoria_id}}</th>
                         <td>{{$categoria->nombre}}</td>
                         <td><img src="{{$categoria->foto}}" width="70"></td>
-                        <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$categoria->categoria_id}}">Editar</button>
-                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
+                        <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$categoria->categoria_id}}">Editar</button>
+                          <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
                     @include('categorias.actualizar')
                 @endforeach 
@@ -38,9 +38,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Eliminar Categoria</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="{{route('categorias.destroy',$categoria->categoria_id)}}" method="post" enctype="multipart/form-data">   
@@ -49,7 +47,7 @@
             ¿Estas seguro que quieres eliminar esta categoria?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
         </div>
       </form>
@@ -63,9 +61,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de Categorias</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('categorias.store')}}" method="post" enctype="multipart/form-data">
@@ -82,7 +78,7 @@
                   <input type="file" class="form-control" name="foto" required>
               </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
             </form>

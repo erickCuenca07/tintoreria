@@ -35,3 +35,6 @@ Route::resource('lineas',LineaPedidoController::class);
 //rutas del ajax
 Route::post('ajax/prendas',[AjaxController::class,'prenda'])->name('ajax.prenda');
 Route::post('ajax/cliente',[AjaxController::class,'cliente'])->name('ajax.cliente');
+
+//sistema de logs
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

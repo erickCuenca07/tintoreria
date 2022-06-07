@@ -6,14 +6,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-     <!-- css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <!-- js -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    {{-- css datatables --}} 
-    @yield('css')
-    
+    <!-- Font Awesome -->
+      <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+      <!-- Google Fonts -->
+      <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+      <!-- MDB -->
+      <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css" rel="stylesheet"/>
   </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,22 +23,41 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto pull-right">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="{{route('pedidos.create')}}">Crear Pedidos </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-          Mas opciones
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{route('prendas.index')}}">Arituclos</a>
-          <a class="dropdown-item" href="{{route('categorias.index')}}">Categorias</a>
-          <a class="dropdown-item" href="{{route('servicios.index')}}">Servicio</a>
-          <a class="dropdown-item" href="{{route('tarifas.index')}}">Tarifas</a>
-          <a class="dropdown-item" href="{{route('clientes.index')}}">Clientes</a>
-        </div>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+           Mas Opciones
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item" href="{{route('prendas.index')}}">Arituclos</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{route('categorias.index')}}">Categorias</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{route('servicios.index')}}">Servicio</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{route('tarifas.index')}}">Tarifas</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{route('clientes.index')}}">Clientes</a>
+            </li>
+          </ul>
+        </li>
       </li>
     </ul>
   </div>
@@ -45,7 +65,12 @@
 
 @yield('content')
 @yield('scripts')
-{{-- js datatables --}}
-@yield('js')
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
+
+<!-- DataTables CSS -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
+<!-- DataTables JS -->
+<script src="js/addons/datatables.min.js" type="text/javascript"></script>
 </body>
 </html>

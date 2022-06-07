@@ -5,7 +5,7 @@
 
 <div class="container">
     <h1>Servicios Disponibles</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Servicio</button>
+    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Servicio</button>
     <br><br>
     <div class='row'>
         <table class='table'>
@@ -23,8 +23,8 @@
                         <th scope="row">{{$servicio->servicio_id}}</th>
                         <td>{{$servicio->nombre}}</td>
                         <td>{{$servicio->descripcion}}</td>
-                        <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$servicio->servicio_id}}">Editar</button>
-                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
+                        <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$servicio->servicio_id}}">Editar</button>
+                          <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
                     @include('servicios.actulizar')
                 @endforeach 
@@ -39,9 +39,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Eliminar Servicio</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="{{route('servicios.destroy',$servicio->servicio_id)}}" method="post" enctype="multipart/form-data">   
@@ -50,7 +48,7 @@
           ¿Estas seguro que quieres eliminar este servicio?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
       </div>
     </form>
@@ -63,10 +61,8 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Creacion de Articulos</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h5 class="modal-title" id="exampleModalLabel">Creacion de Servicio</h5>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('servicios.store')}}" method="post" enctype="multipart/form-data">
@@ -76,14 +72,14 @@
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Nombre</label>
-                    <input type="text" class="form-control"  placeholder="Nombre de la mercaderia" name="nombre" required>
+                    <input type="text" class="form-control"  placeholder="Nombre del servicio" name="nombre" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Descripcion</label>
-                    <textarea class="form-control"  rows="3" placeholder="Descripcion del producto..." name="descripcion" required></textarea>
+                    <textarea class="form-control"  rows="3" placeholder="Descripcion del servicio..." name="descripcion" required></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
                 

@@ -3,10 +3,10 @@
     
 @section('content')
 <div class="container">
-    <div class="form-row">    
+    <div class="row">    
         <form class="form-group" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Pedido ID</label>
                     <input type="number" name="pedido_id" class="form-control" value="{{$pedido->numero_pedido}}">
@@ -24,7 +24,7 @@
                     <input type="date" name="fecha_prevista" class="form-control" value="{{$pedido->fecha_prevista}}">
                 </div>
             </div>
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha de Entreda</label>
                     <input type="text" name="fecha_entrega" class="form-control">
@@ -54,9 +54,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Añadir Prenda</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('lineas.store')}}"  method="post" enctype="multipart/form-data">
@@ -91,7 +89,7 @@
                     <input type="number" class="form-control"  value="1" placeholder="Cantidad..." name="cantidad" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Añadir">
                   </div>
                 
@@ -103,8 +101,9 @@
 </div>
 
 <div class="container">
+    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Añadir Prendas</button>
     <div class='row'>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Añadir Prendas</button>
+        
         <table id="tabla" class='table'>
             <thead>
                 <tr>
@@ -123,10 +122,36 @@
                     <td>{{$key->servicio->nombre}}</td>
                     <td>{{$key->cantidad}}</td>
                     <td>{{$key->precio}}</td>
+                    <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-">Editar</button>
+                        <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
                     </tr>
+                    @include('actualizar')
                 @endforeach 
             </tbody>
         </table>
+    </div>
+</div>
+
+{{-- modal para eliminar prenda --}}
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Eliminar Prenda</h5>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{route('lineas.destroy',$key->linea_pedido_id)}}" method="post" enctype="multipart/form-data">   
+            @csrf
+            @method('delete')
+            ¿Estas seguro que quieres eliminar esta prenda?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
+        </div>
+      </form>
+      </div>
     </div>
 </div>
 

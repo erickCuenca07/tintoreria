@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <h1>Clientes Disponibles</h1>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Cliente</button>
+        <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Cliente</button>
         <br><br>
         <div class='row'>
             <table id="tabla" class='table'>
@@ -32,8 +32,8 @@
                             <td>{{$cliente->domicilio}}</td>
                             <td>{{$cliente->provincia}}</td>
                             <td>{{$cliente->municipio}}</td>
-                            <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$cliente->cliente_id}}">Editar</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
+                            <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$cliente->cliente_id}}">Editar</button>
+                                <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
                         @include('clientes.actualizar')
                     @endforeach 
@@ -48,9 +48,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Eliminar Cliente</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form action="{{route('clientes.destroy',$cliente->cliente_id)}}" method="post" enctype="multipart/form-data">   
@@ -59,7 +57,7 @@
                 ¿Estas seguro que quieres eliminar este cliente?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
         </div>
       </form>
@@ -73,9 +71,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de clientes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('clientes.store')}}" method="post" enctype="multipart/form-data">
@@ -112,7 +108,7 @@
                     <input type="text" class="form-control"  placeholder="Municipio del cliente..." name="municipio" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
                 

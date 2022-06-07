@@ -4,9 +4,7 @@
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" >Actualizar Articulos</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('prendas.update',$prenda->prenda_id)}}" method="post" enctype="multipart/form-data">
@@ -30,10 +28,10 @@
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Categoria</label>
-                        <input type="text" class="form-control"  value="{{$prenda->categoria->nombre}}"
+                        <input type="text" class="form-control"  value="{{$prenda->categoria->nombre}}">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="Actulizar" value="Actulizar">
                 </div>
             </form>
