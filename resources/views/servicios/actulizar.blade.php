@@ -22,6 +22,10 @@
                     <label for="exampleFormControlTextarea1">Descripcion</label>
                     <input class="form-control"   value="{{$servicio->descripcion}}" name="descripcion" >
                 </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Foto</label>
+                    <input type="file" class="form-control" name="foto" value="{{$servicio->foto}}" >
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="Actulizar" value="Actulizar">

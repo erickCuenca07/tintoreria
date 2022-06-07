@@ -14,6 +14,7 @@
                 <th scope='col' class='center'>Servicio id</th>
                 <th scope='col' class='center'>Nombre</th>
                 <th scope='col' class='center'>Descripcion</th>
+                <th scope='col' class='center'>Foto</th>
                 <th scope='col' class='center'>Operacionces</th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                         <th scope="row">{{$servicio->servicio_id}}</th>
                         <td>{{$servicio->nombre}}</td>
                         <td>{{$servicio->descripcion}}</td>
+                        <td><img src="{{$servicio->foto}}" width="70"></td>
                         <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$servicio->servicio_id}}">Editar</button>
                           <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
@@ -78,6 +80,10 @@
                     <label for="exampleFormControlTextarea1">Descripcion</label>
                     <textarea class="form-control"  rows="3" placeholder="Descripcion del servicio..." name="descripcion" required></textarea>
                 </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Foto</label>
+                  <input type="file" class="form-control" name="foto" required>
+              </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">

@@ -22,6 +22,14 @@ class ServicioController extends Controller
         $servicio->nombre = $request->nombre;
         $servicio->descripcion = $request->descripcion;
 
+        if( $request->hasFile('foto') ) {
+            $file = $request->file('foto');
+            $destinationPath = 'img/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $uploadSuccess = $request->file('foto')->move($destinationPath, $filename);
+            $servicio->foto = $destinationPath . $filename;
+        }
+
         $servicio->save();
 
         return redirect()->back();
@@ -41,6 +49,13 @@ class ServicioController extends Controller
         $servicio_id->nombre= $request->nombre;
         $servicio_id->descripcion=$request->descripcion;
         
+        if( $request->hasFile('foto') ) {
+            $file = $request->file('foto');
+            $destinationPath = 'img/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $uploadSuccess = $request->file('foto')->move($destinationPath, $filename);
+            $servicio_id->foto = $destinationPath . $filename;
+        }
       
         $servicio_id->update();
 
