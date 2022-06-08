@@ -17,6 +17,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css" rel="stylesheet"/>
   </head>
 <body>
+  @if (auth()->check())
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{{route('pedidos.index')}}">Inicio</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,8 +60,41 @@
           </ul>
         </li>
       </li>
+      <li>
+        <a class="dropdown-item" href="">Hola,{{auth()->user()->name}}</a>
+      </li>
     </ul>
   </div>
+
+  <div class="d-flex align-items-center">
+  <div class="dropdown">
+    <a
+      class="dropdown-toggle d-flex align-items-center hidden-arrow"
+      href="#"
+      id="navbarDropdownMenuAvatar"
+      role="button"
+      data-mdb-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <img
+        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+        class="rounded-circle"
+        height="25"
+        alt="Black and White Portrait of a Man"
+        loading="lazy"
+      />
+    </a>
+    <ul
+      class="dropdown-menu dropdown-menu-end"
+      aria-labelledby="navbarDropdownMenuAvatar"
+    >
+      <li>
+        <a class="dropdown-item" href="{{route('login.destroy')}}">Logout</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+  @endif
 </nav>
 
 @yield('content')

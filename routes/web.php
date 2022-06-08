@@ -9,6 +9,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\LineaPedidoController;
 use App\Http\Controllers\CategoriaoController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 
 /*
@@ -23,18 +25,25 @@ use App\Http\Controllers\CategoriaoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->name('welcome');
-Route::resource('prendas',PrendaController::class);
-Route::resource('servicios',ServicioController::class);
-Route::resource('tarifas',TarifaController::class);
-Route::resource('clientes',ClienteController::class);
-Route::resource('pedidos',PedidoController::class);
-Route::resource('categorias',CategoriaoController::class);
-Route::resource('lineas',LineaPedidoController::class);
+Route::resource('prendas',PrendaController::class)->middleware('auth');
+Route::resource('servicios',ServicioController::class)->middleware('auth');
+Route::resource('tarifas',TarifaController::class)->middleware('auth');
+Route::resource('clientes',ClienteController::class)->middleware('auth');
+Route::resource('pedidos',PedidoController::class)->middleware('auth');
+Route::resource('categorias',CategoriaoController::class)->middleware('auth');
+Route::resource('lineas',LineaPedidoController::class)->middleware('auth');
 //rutas del ajax
 Route::post('ajax/prendas',[AjaxController::class,'prenda'])->name('ajax.prenda');
 Route::post('ajax/cliente',[AjaxController::class,'cliente'])->name('ajax.cliente');
 
+//login
+Route::get('/login',[LoginController::class,'index'])->name('login.index');
+Route::post('/login',[LoginController::class,'store'])->name('login.store');
+Route::get('/logout',[LoginController::class,'destroy'])->name('login.destroy');
+//register
+Route::get('register',[RegisterController::class,'index'])->name('register.index');
+Route::post('register',[RegisterController::class,'store'])->name('register.store');
 //sistema de logs
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
