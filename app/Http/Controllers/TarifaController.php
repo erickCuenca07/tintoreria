@@ -44,6 +44,7 @@ class TarifaController extends Controller
     {
         $tarifa_id= Tarifa::find($tarifa_id);
 
+        $tarifa_id->tarifa_id= $request->tarifa_id;
         $tarifa_id->prenda_id= $request->prenda_id;
         $tarifa_id->servicio_id= $request->servicio_id;
         $tarifa_id->precio=$request->precio;

@@ -9,6 +9,7 @@ class Tarifa extends Model
 {
     use HasFactory;
     protected $table = 'tarifa';
+    protected $primaryKey = 'tarifa_id';
     public $incrementing = true;
     public $timestamps = false;
 

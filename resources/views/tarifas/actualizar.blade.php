@@ -1,5 +1,5 @@
   <!-- Modal Para Actualizar-->
-  <div class="modal fade" id="actualizar-{{$tarifa->prenda_id}}" aria-hidden="true">
+  <div class="modal fade" id="actualizar-{{$tarifa->tarifa_id}}" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -9,9 +9,13 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="form-group" action="{{route('tarifas.update',$tarifa->prenda_id)}}" method="post" enctype="multipart/form-data">
+            <form class="form-group" action="{{route('tarifas.update',$tarifa->tarifa_id)}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
+                <div class="form-group">
+                    <label for="disabledTextInput">Tarifa Id</label>
+                    <input type="text" class="form-control" value="{{$tarifa->tarifa_id}}" name="tarifa_id" >
+                </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Prenda Id</label>
                     <input type="text" class="form-control" value="{{$tarifa->prenda_id}}" name="prenda_id" >
