@@ -4,7 +4,9 @@
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" >Actualizar Prenda</h5>
-        <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('lineas.update',$key->linea_pedido_id)}}" method="post" enctype="multipart/form-data">
@@ -33,7 +35,7 @@
                     <input type="number" class="form-control" name="precio" value="{{$key->precio}}" >
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="Actulizar" value="Actulizar">
                 </div>
             </form>

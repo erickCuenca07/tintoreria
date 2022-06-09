@@ -1,14 +1,20 @@
 @extends('layouts.plantilla')
-@section('title','Listar Servicios')
-  
-@section('content')
+@section('title', 'Servicios')
 
-<div class="container">
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+@stop
+
+@section('content_header')
     <h1>Servicios Disponibles</h1>
-    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Servicio</button>
-    <br><br>
-    <div class='row'>
-        <table class='table'>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Servicio</button>
+@stop
+
+@section('content')
+<div class="card">
+  <div class="card-body">
+        <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
             <thead>
                 <tr>
                 <th scope='col' class='center'>Servicio id</th>
@@ -25,8 +31,8 @@
                         <td>{{$servicio->nombre}}</td>
                         <td>{{$servicio->descripcion}}</td>
                         <td><img src="{{$servicio->foto}}" width="70"></td>
-                        <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$servicio->servicio_id}}">Editar</button>
-                          <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
+                        <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$servicio->servicio_id}}">Editar</button>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
                     @include('servicios.actulizar')
                 @endforeach 
@@ -41,7 +47,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Eliminar Servicio</h5>
-        <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <form action="{{route('servicios.destroy',$servicio->servicio_id)}}" method="post" enctype="multipart/form-data">   
@@ -50,7 +58,7 @@
           ¿Estas seguro que quieres eliminar este servicio?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
       </div>
     </form>
@@ -64,7 +72,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de Servicio</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('servicios.store')}}" method="post" enctype="multipart/form-data">
@@ -85,14 +95,37 @@
                   <input type="file" class="form-control" name="foto" required>
               </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
-                
             </form>
         </div>
       </div>
     </div>
   </div>
 
-@endsection
+@stop
+
+@section('js')
+<script src="https://kit.fontawesome.com/19ecb18a8d.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(function () {
+      $('#example').DataTable({
+          "language":{
+            "search":     "Buscar",
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "info":       "Mostrando página _PAGE_ de _PAGE_",
+            "paginate":   {
+                          "previous": "Anterior",
+                          "next": "Siguiente",
+                          "first": "Primero",
+                          "last": "Ultimo"
+            }
+          }
+      });
+  });
+  </script>
+@stop

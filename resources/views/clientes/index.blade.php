@@ -1,13 +1,20 @@
 @extends('layouts.plantilla')
-@section('title','Listar Clientes')
- 
+@section('title', 'Clientes')
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+@stop
+
+@section('content_header')
+    <h1>Clientes Disponibles</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Cliente</button>
+@stop
+
 @section('content')
-    <div class="container">
-        <h1>Clientes Disponibles</h1>
-        <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Cliente</button>
-        <br><br>
-        <div class='row'>
-            <table id="tabla" class='table'>
+<div class="card">
+  <div class="card-body">
+            <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
                 <thead>
                     <tr>
                     <th scope='col' class='center'>Cliente Id</th>
@@ -32,15 +39,15 @@
                             <td>{{$cliente->domicilio}}</td>
                             <td>{{$cliente->provincia}}</td>
                             <td>{{$cliente->municipio}}</td>
-                            <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$cliente->cliente_id}}">Editar</button>
-                                <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
+                            <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$cliente->cliente_id}}">Editar</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
                         @include('clientes.actualizar')
                     @endforeach 
                 </tbody>
             </table>
-        </div>
-    </div>
+  </div>
+</div>
 
     <!-- Modal para elmiinar-->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -48,8 +55,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Eliminar Cliente</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-        </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>
         <div class="modal-body">
             <form action="{{route('clientes.destroy',$cliente->cliente_id)}}" method="post" enctype="multipart/form-data">   
                 @csrf
@@ -57,7 +65,7 @@
                 ¿Estas seguro que quieres eliminar este cliente?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
         </div>
       </form>
@@ -71,7 +79,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de clientes</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('clientes.store')}}" method="post" enctype="multipart/form-data">
@@ -108,7 +118,7 @@
                     <input type="text" class="form-control"  placeholder="Municipio del cliente..." name="municipio" required>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
                 
@@ -118,4 +128,28 @@
     </div>
   </div>
   
-@endsection
+@stop 
+
+@section('js')
+<script src="https://kit.fontawesome.com/19ecb18a8d.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(function () {
+      $('#example').DataTable({
+          "language":{
+            "search":     "Buscar",
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "info":       "Mostrando página _PAGE_ de _PAGE_",
+            "paginate":   {
+                          "previous": "Anterior",
+                          "next": "Siguiente",
+                          "first": "Primero",
+                          "last": "Ultimo"
+            }
+          }
+      });
+  });
+  </script>
+@stop

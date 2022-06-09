@@ -62,7 +62,13 @@ class PedidoController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $id = Pedido::find($id);
+        $id->numero_pedido = $request->pedido_id;
+        $id->cliente_id = $request->cliente_id;
+        $id->fecha_recibo= $request->fecha_actual;
+        $id->domicilio = $request->domicilio;
+        $id->fecha_prevista = $request->fecha_prevista;
+        $id->fecha_entregado = $request->fecha_entrega;
     }
 
     public function destroy(Request $request,$numero_pedido)

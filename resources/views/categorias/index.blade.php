@@ -1,13 +1,20 @@
 @extends('layouts.plantilla')
-@section('title','Listar Categorias')
- 
-@section('content')
-<div class="container">
+@section('title', 'Categorias')
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+@stop
+
+@section('content_header')
     <h1>Categorias Disponibles</h1>
-    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Categoria</button>
-    <br><br>
-    <div class='row'>
-        <table id="tabla" class='table'>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Categoria</button>
+@stop
+
+@section('content')
+<div class="card">
+  <div class="card-body">
+        <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
             <thead>
                 <tr>
                 <th scope='col' class='center'>id</th>
@@ -22,8 +29,8 @@
                         <th scope="row">{{$categoria->categoria_id}}</th>
                         <td>{{$categoria->nombre}}</td>
                         <td><img src="{{$categoria->foto}}" width="70"></td>
-                        <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$categoria->categoria_id}}">Editar</button>
-                          <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
+                        <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$categoria->categoria_id}}">Editar</button>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
                         </tr>
                     @include('categorias.actualizar')
                 @endforeach 
@@ -38,7 +45,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Eliminar Categoria</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form action="{{route('categorias.destroy',$categoria->categoria_id)}}" method="post" enctype="multipart/form-data">   
@@ -47,7 +56,7 @@
             ¿Estas seguro que quieres eliminar esta categoria?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
         </div>
       </form>
@@ -61,7 +70,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de Categorias</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('categorias.store')}}" method="post" enctype="multipart/form-data">
@@ -78,7 +89,7 @@
                   <input type="file" class="form-control" name="foto" required>
               </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Crear">
                   </div>
             </form>
@@ -87,4 +98,28 @@
     </div>
 </div>
 
-@endsection
+@stop
+
+@section('js')
+<script src="https://kit.fontawesome.com/19ecb18a8d.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "language":{
+              "search":     "Buscar",
+              "lengthMenu": "Mostrar _MENU_ registros por página",
+              "info":       "Mostrando página _PAGE_ de _PAGE_",
+              "paginate":   {
+                            "previous": "Anterior",
+                            "next": "Siguiente",
+                            "first": "Primero",
+                            "last": "Ultimo"
+              }
+            }
+        });
+    });
+    </script>
+@stop

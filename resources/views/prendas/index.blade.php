@@ -1,41 +1,46 @@
 @extends('layouts.plantilla')
-@section('title','Listar Aritculos')
- 
-@section('content')
+@section('title', 'Prendas')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+@stop
 
-<div class="container">
+@section('content_header')
     <h1>Prendas Disponibles</h1>
-    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Crear Prenda</button>
-    <br><br>
-    <div class='row'>
-        <table id="dtBasicExample" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                <th scope='col' class='center'>id</th>
-                <th scope='col' class='center'>Nombre</th>
-                <th scope='col' class='center'>Descripcion</th>
-                <th scope='col' class='center'>foto</th>
-                <th scope='col' class='center'>Categoria</th>
-                <th scope='col' class='center'>Operacionces</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach ($prendas as $prenda)
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear Prenda</button>
+@stop
+
+@section('content')
+<div class="card">
+  <div class="card-body">
+            <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
+                <thead>
                     <tr>
-                        <th scope="row">{{$prenda->prenda_id}}</th>
-                        <td>{{$prenda->nombre}}</td>
-                        <td>{{$prenda->descripcion}}</td>
-                        <td><img src="{{$prenda->foto}}" width="70"></td>
-                        <td>{{$prenda->categoria->nombre}}</td>
-                        <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-{{$prenda->prenda_id}}">Editar</button>
-                          <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
-                        </tr>
-                    @include('prendas.actulizar')
-                @endforeach 
-            </tbody>
-        </table>
-    </div>
+                    <th scope='col' class='center'>id</th>
+                    <th scope='col' class='center'>Nombre</th>
+                    <th scope='col' class='center'>Descripcion</th>
+                    <th scope='col' class='center'>foto</th>
+                    <th scope='col' class='center'>Categoria</th>
+                    <th scope='col' class='center'>Operacionces</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($prendas as $prenda)
+                        <tr>
+                            <th scope="row">{{$prenda->prenda_id}}</th>
+                            <td>{{$prenda->nombre}}</td>
+                            <td>{{$prenda->descripcion}}</td>
+                            <td><img src="{{$prenda->foto}}" width="70"></td>
+                            <td>{{$prenda->categoria->nombre}}</td>
+                            <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$prenda->prenda_id}}">Editar</button>
+                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
+                            </tr>
+                        @include('prendas.actulizar')
+                    @endforeach
+                </tbody>
+            </table>
+  </div>
 </div>
 
 <!-- Modal para elmiinar-->
@@ -44,7 +49,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Eliminar Articulo</h5>
-        <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <form action="{{route('prendas.destroy',$prenda->prenda_id)}}" method="post" enctype="multipart/form-data">   
@@ -53,7 +60,7 @@
           ¿Estas seguro que quieres eliminar este articulo?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
       </div>
     </form>
@@ -67,7 +74,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Creacion de Articulos</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form class="form-group" action="{{route('prendas.store')}}" method="post" enctype="multipart/form-data">
@@ -107,11 +116,28 @@
       </div>
     </div>
 </div>
+@stop
 
+@section('js')
+<script src="https://kit.fontawesome.com/19ecb18a8d.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script>
   $(document).ready(function () {
-$('#dtBasicExample').DataTable();
-$('.dataTables_length').addClass('bs-select');
-});
-</script>
-@endsection
+      $('#example').DataTable({
+          "language":{
+            "search":     "Buscar",
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "info":       "Mostrando página _PAGE_ de _PAGE_",
+            "paginate":   {
+                          "previous": "Anterior",
+                          "next": "Siguiente",
+                          "first": "Primero",
+                          "last": "Ultimo"
+            }
+          }
+      });
+  });
+  </script>
+@stop

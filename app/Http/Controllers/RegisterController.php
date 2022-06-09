@@ -30,7 +30,7 @@ class RegisterController extends Controller
             $user->email=$request->email;
             $user->password=$request->password;
             $user->save();
-            return redirect()->route('pedidos.index');
+            return redirect()->route('welcome');
         
       
     }

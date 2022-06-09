@@ -1,9 +1,18 @@
 @extends('layouts.plantilla')
-@section('title',' Crear Pedido')
+@section('title', 'Editar Pedido')
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+@stop
+
+@section('content_header')
+    <h1>Edicion de Pedido</h1>
+@stop
     
 @section('content')
-<div class="container">
-    <div class="row">    
+<div class="card">
+    <div class="card-body"> 
         <form class="form-group" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
@@ -27,7 +36,7 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha de Entreda</label>
-                    <input type="text" name="fecha_entrega" class="form-control">
+                    <input type="date" name="fecha_entrega" class="form-control">
                 </div> 
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault03">Domicilio</label>
@@ -43,8 +52,7 @@
                 </div>
             </div>     
             <input type="submit" class="btn btn-primary" name="Actulizar" value="Actualizar">
-        </form>
-        
+        </form> 
     </div>
 </div>
 
@@ -54,7 +62,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Añadir Prenda</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
             <form class="form-group" action="{{route('lineas.store')}}"  method="post" enctype="multipart/form-data">
@@ -89,7 +99,7 @@
                     <input type="number" class="form-control"  value="1" placeholder="Cantidad..." name="cantidad" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <input type="submit" class="btn btn-primary" name="crear" value="Añadir">
                   </div>
                 
@@ -100,11 +110,10 @@
   </div>
 </div>
 
-<div class="container">
-    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Añadir Prendas</button>
-    <div class='row'>
-        
-        <table id="tabla" class='table'>
+<div class="card">
+    <div class="card-body">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Añadir Prendas</button><hr>
+        <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
             <thead>
                 <tr>
                 <th scope='col' class='center'>Prenda</th>
@@ -122,8 +131,8 @@
                     <td>{{$key->servicio->nombre}}</td>
                     <td>{{$key->cantidad}}</td>
                     <td>{{$key->precio}}</td>
-                    <td> <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#actualizar-">Editar</button>
-                        <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">Eliminar</button></td>
+                    <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-">Editar</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Eliminar</button></td>
                     </tr>
                     @include('actualizar')
                 @endforeach 
@@ -138,7 +147,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Eliminar Prenda</h5>
-          <button ttype="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form action="{{route('lineas.destroy',$key->linea_pedido_id)}}" method="post" enctype="multipart/form-data">   
@@ -147,7 +158,7 @@
             ¿Estas seguro que quieres eliminar esta prenda?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-danger" name="eliminar">Eliminar</button>
         </div>
       </form>
@@ -155,4 +166,28 @@
     </div>
 </div>
 
-@endsection
+@stop
+
+@section('js')
+<script src="https://kit.fontawesome.com/19ecb18a8d.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(function () {
+      $('#example').DataTable({
+          "language":{
+            "search":     "Buscar",
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "info":       "Mostrando página _PAGE_ de _PAGE_",
+            "paginate":   {
+                          "previous": "Anterior",
+                          "next": "Siguiente",
+                          "first": "Primero",
+                          "last": "Ultimo"
+            }
+          }
+      });
+  });
+  </script>
+@stop

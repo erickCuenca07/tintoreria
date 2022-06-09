@@ -41,7 +41,7 @@ Route::post('ajax/cliente',[AjaxController::class,'cliente'])->name('ajax.client
 //login
 Route::get('/login',[LoginController::class,'index'])->name('login.index');
 Route::post('/login',[LoginController::class,'store'])->name('login.store');
-Route::get('/logout',[LoginController::class,'destroy'])->name('login.destroy');
+Route::post('/logout',[LoginController::class,'destroy'])->name('login.destroy');
 //register
 Route::get('register',[RegisterController::class,'index'])->name('register.index');
 Route::post('register',[RegisterController::class,'store'])->name('register.store');

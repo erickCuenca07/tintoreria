@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
+    //funcion en la que diremos el tipo de usuario que esta dentro de la plataforma
+    public function adminlte_desc()
+    {
+        return 'Administrador';
+    }
 }

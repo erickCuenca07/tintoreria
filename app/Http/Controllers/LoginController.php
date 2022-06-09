@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        if(auth()->attempt(request(['name','password']))==false){
+        if(auth()->attempt(request(['email','password']))==false){
             return back()->withErrors([
                 'message' =>'User o password incorrectos'
             ]);
