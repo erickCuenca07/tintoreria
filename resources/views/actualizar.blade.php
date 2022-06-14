@@ -20,11 +20,13 @@
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Prenda</label>
-                    <input type="text" class="form-control" value="{{$key->prenda_id}}" name="prenda_id" >
+                     <input type="text" class="form-control" value="{{$key->prenda->nombre}}" >
+                     <input type="hidden" name="prenda_id"  value="{{$key->prenda_id}}">
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Servicio</label>
-                    <input type="text" class="form-control"  value="{{$key->servicio_id}}" name="servicio" >
+                    <input type="text" class="form-control"  value="{{$key->servicio->nombre}}" >
+                    <input type="hidden" name="servicio"  value="{{$key->servicio_id}}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Cantidad</label>

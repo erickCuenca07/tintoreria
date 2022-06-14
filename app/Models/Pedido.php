@@ -18,7 +18,7 @@ class Pedido extends Model
     }
 
     public function lineas(){
-        return $this->hasMany(LineaPedido::class,'linea_pedido_id','numero_pedido');
+        return $this->hasMany(LineaPedido::class,'numero_pedido','numero_pedido');
     }
 
     public function prenda(){

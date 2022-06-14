@@ -11,12 +11,12 @@
 @stop
     
 @section('content')
-<div class="container">
-<div class="row">    
+<div class="card">
+<div class="card-body">    
     <form class="form-group" action="{{route('pedidos.store')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row">
-            <input type="hidden" name="pedido_id"  class="form-control" >     
+            {{-- <input type="hidden" name="pedido_id"  class="form-control" >      --}}
             <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Cliente</label>
                   <select name='cliente_id' id='cliente_id' class="custom-select">
@@ -41,7 +41,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 mb-3">
-                <label for="validationDefault01">Fecha de Entreda</label>
+                <label for="validationDefault01">Fecha de Entrega</label>
                 <input type="date" name="fecha_entrega" class="form-control">
             </div> 
             <div class="col-md-3 mb-3">
@@ -122,6 +122,34 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function(){
+            
+        $("#cliente_id").change(function(){
+            $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+            var id=$("select[name=cliente_id]").val();
+            if (id!=0){
+            $.ajax({
+                url: '{{route('ajax.cliente')}}',
+                method:'post',
+                data:{'cliente_id':id},
+                success:function(data){
+                    var datos=JSON.parse(data);
+                    $("#domicilio").val(datos.domicilio);
+                    $("#municipio").val(datos.municipio);
+                    $("#provincia").val(datos.provincia);
+                }
+            });
+            }else{
+                alert("Cliente no seleccionado");
+            }
+            });
+        });
+        </script>
 <script>
   $(document).ready(function () {
       $('#example').DataTable({

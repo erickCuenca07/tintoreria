@@ -13,8 +13,9 @@
 @section('content')
 <div class="card">
     <div class="card-body"> 
-        <form class="form-group" method="post" enctype="multipart/form-data">
+        <form class="form-group" action="{{route('pedidos.update',$pedido->numero_pedido)}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
+            @method('put')
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Pedido ID</label>
@@ -22,11 +23,12 @@
                 </div>      
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Cliente</label>
-                    <input type="text" name="pedido_id" class="form-control" value="{{$pedido->clientes->nombre}}">
+                    <input type="text" name="" class="form-control" value="{{$pedido->clientes->nombre}}">
+                    <input type="hidden" name="cliente_id"  value="{{$pedido->cliente_id}}">
                   </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha Actual</label>
-                    <input  type="text" name='fecha' id='fecha_actual' value="{{$pedido->fecha_recibo}}" class="form-control"> 
+                    <input  type="text" name='fecha_actual' id='fecha_actual' value="{{$pedido->fecha_recibo}}" class="form-control"> 
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha prevista</label>
@@ -124,7 +126,6 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- esta parte falta por mejorar funciona --}}
                 @foreach ($pedido->lineas as $key)
                 <tr>
                     <td>{{$key->prenda->nombre}}</td>
@@ -151,7 +152,7 @@
 </div>
 
 {{-- modal para eliminar prenda --}}
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -173,7 +174,7 @@
       </form>
       </div>
     </div>
-</div>
+</div> --}}
 
 @stop
 

@@ -12,7 +12,8 @@
 @stop
 
 @section('content')
-<div class="card">
+<div class="container">
+  <div class="card">
   <div class="card-body">
             <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
                 <thead>
@@ -54,10 +55,10 @@
                         @include('clientes.actualizar')
                     @endforeach 
                 </tbody>
-            </table>
-  </div>
+        </table>
+      </div>
+    </div>
 </div>
-
     <!-- Modal para elmiinar-->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

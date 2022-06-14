@@ -30,7 +30,7 @@ class PedidoController extends Controller
     {
         $pedido = new Pedido();
         
-        $pedido->numero_pedido = $request->pedido_id;
+        // $pedido->numero_pedido = $request->pedido_id;
         $pedido->cliente_id = $request->cliente_id;
         $pedido->fecha_recibo= $request->fecha_actual;
         $pedido->domicilio = $request->domicilio;
@@ -55,10 +55,6 @@ class PedidoController extends Controller
        $linea=LineaPedido::all();
         return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio,'linea'=>$linea]);
     }
-    public function show($id)
-    {
-        //
-    }
 
     public function update(Request $request, $id)
     {
@@ -66,9 +62,27 @@ class PedidoController extends Controller
         $id->numero_pedido = $request->pedido_id;
         $id->cliente_id = $request->cliente_id;
         $id->fecha_recibo= $request->fecha_actual;
-        $id->domicilio = $request->domicilio;
         $id->fecha_prevista = $request->fecha_prevista;
         $id->fecha_entregado = $request->fecha_entrega;
+        $id->domicilio = $request->domicilio;
+        $id->provincia = $request->provincia;
+        $id->municipio = $request->municipio;
+        $id->update();
+        return redirect()->back();
+    }
+
+    public function show(Request $request, $id)
+    {
+        $id = Pedido::find($id);
+        $id->numero_pedido = $request->pedido_id;
+        $id->cliente_id = $request->cliente_id;
+        $id->domicilio = $request->domicilio;
+        $id->fecha_recibo= $request->fecha_actual;
+        $id->fecha_prevista = $request->fecha_prevista;
+        $id->fecha_entregado = $request->fecha_entrega;
+        
+        $id->update();
+        return redirect()->back();
     }
 
     public function destroy(Request $request,$numero_pedido)
