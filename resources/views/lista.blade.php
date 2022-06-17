@@ -18,7 +18,7 @@
             <tr>
             <th scope='col' class='center'>Numero de Pedido</th>
             <th scope='col' class='center'>Cliente </th>
-            <th scope='col' class='center'>Fecha Recivido</th>
+            <th scope='col' class='center'>Fecha Recibido</th>
             <th scope='col' class='center'>Domicilio</th>
             <th scope='col' class='center'>Fecha Prevista</th>
             <th scope='col' class='center'>Fecha de Entrega</th>

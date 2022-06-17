@@ -35,7 +35,7 @@ Route::resource('pedidos',PedidoController::class)->middleware('auth');
 Route::resource('categorias',CategoriaoController::class)->middleware('auth');
 Route::resource('lineas',LineaPedidoController::class)->middleware('auth');
 //rutas del ajax
-Route::post('ajax/prendas',[AjaxController::class,'prenda'])->name('ajax.prenda');
+Route::post('ajax/tarifa',[AjaxController::class,'precio'])->name('ajax.tarifa');
 Route::post('ajax/cliente',[AjaxController::class,'cliente'])->name('ajax.cliente');
 
 //login

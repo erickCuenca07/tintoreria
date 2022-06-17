@@ -27,4 +27,11 @@ class Pedido extends Model
     public function servicios(){
         return $this->belongsTo(Servicio::class,'servicio_id','servicio_id');
     }
+    public function total(){
+        $total=0;
+        foreach($this->lineas as $linea){
+            $total+=$linea->cantidad*$linea->precio;
+        }
+        return $total;
+    }
 }

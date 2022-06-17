@@ -36,17 +36,8 @@ class LineaPedidoController extends Controller
         $pedido=Pedido::find($num);
         $prenda=Prenda::all();
         $servicio=Servicio::all();
+
         return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio]);
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function update(Request $request, $id)
@@ -60,15 +51,31 @@ class LineaPedidoController extends Controller
         $id->precio = $request->precio;
 
         $id->update();
-
-        return redirect()->back();
+        
+        $num=$request->numero_pedido;
+        $pedido=Pedido::find($num);
+        $prenda=Prenda::all();
+        $servicio=Servicio::all();
+        return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio]);
     }
 
+    public function edit($id)
+    {
+        //
+    }
+    public function show(){
+        //
+    }
     public function destroy(Request $request,$id)
     {
         $id = LineaPedido::find($id);
         $id->delete();
+        
+        $num=$request->numero_pedido;
+        $pedido=Pedido::find($num);
+        $prenda=Prenda::all();
+        $servicio=Servicio::all();
 
-        return redirect()->back();
+        return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio]);
     }
 }

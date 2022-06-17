@@ -15,28 +15,28 @@
 <div class="card-body">    
     <form class="form-group" action="{{route('pedidos.store')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
+        @csrf
         <div class="row">
-            {{-- <input type="hidden" name="pedido_id"  class="form-control" >      --}}
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault01">Numero de Teléfono</label>
+                <input type="text" name='telefono' id='telefono' class="form-control" placeholder="Numero de teléfono">
+            </div>
             <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Cliente</label>
-                  <select name='cliente_id' id='cliente_id' class="custom-select">
-                      <option selected>Elige un Cliente</option>
-                      @foreach ($cliente as $cliente)
-                          <option value="{{$cliente->cliente_id}}">{{$cliente->nombre}}</option>
-                      @endforeach
-                  </select>
+                <input type="text" id='nombre' class="form-control" placeholder="Nombre del Cliente">
+                <input type="hidden" name='cliente_id' id='cliente_id'>
               </div>
-              <div class="col-md-3 mb-3">
+              <div class="col-md-2 mb-2">
                 <label for="validationDefault01">O Puedes</label><br>
                 <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal">Crear Cliente</button>
               </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-2 mb-2">
                 <label for="validationDefault01">Fecha Recogida</label>
-                <input  type="text" name='fecha_actual' id='fecha_actual' class="form-control" value="{{ $ldate = date('d-m-Y')}}" > 
+                <input  type="text" name='fecha_actual' id='fecha_actual' class="form-control" value="{{ $ldate = date('d/m/Y')}}" > 
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-2 mb-2">
                 <label for="validationDefault01">Fecha prevista</label>
-                <input type="date" name="fecha_prevista" class="form-control">
+                <input type="text" name="fecha_prevista" id='fechaPrevista' class="form-control" placeholder="Fecha prevista">
             </div>
         </div>
         <div class="row">
@@ -125,30 +125,54 @@
 <script>
     $(document).ready(function(){
             
-        $("#cliente_id").change(function(){
+        $("#telefono").change(function(){
             $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-            var id=$("select[name=cliente_id]").val();
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+            var id=$("input[name=telefono]").val();
+          
             if (id!=0){
             $.ajax({
                 url: '{{route('ajax.cliente')}}',
                 method:'post',
-                data:{'cliente_id':id},
+                data:{'telefono':id},
                 success:function(data){
                     var datos=JSON.parse(data);
-                    $("#domicilio").val(datos.domicilio);
-                    $("#municipio").val(datos.municipio);
-                    $("#provincia").val(datos.provincia);
+                    console.log(datos);
+                    var fecha = sumaFecha(2,fecha);
+                    $("#fechaPrevista").val(fecha);
+                    $("#cliente_id").val(datos[0].cliente_id);
+                    $("#nombre").val(datos[0].nombre);
+                    $("#domicilio").val(datos[0].domicilio);
+                    $("#municipio").val(datos[0].municipio);
+                    $("#provincia").val(datos[0].provincia);
                 }
             });
             }else{
-                alert("Cliente no seleccionado");
+                alert("El cliente no existe");
             }
             });
-        });
+            });
+            sumaFecha = function(d, fecha)
+            {
+            var Fecha = new Date();
+            var sFecha = fecha || (Fecha.getDate() + "/" + (Fecha.getMonth() +1) + "/" + Fecha.getFullYear());
+            var sep = sFecha.indexOf('/') != -1 ? '/' : '-';
+            var aFecha = sFecha.split(sep);
+            var fecha = aFecha[2]+'/'+aFecha[1]+'/'+aFecha[0];
+            fecha= new Date(fecha);
+            fecha.setDate(fecha.getDate()+parseInt(d));
+            var anno=fecha.getFullYear();
+            var mes= fecha.getMonth()+1;
+            var dia= fecha.getDate();
+            mes = (mes < 10) ? ("0" + mes) : mes;
+            dia = (dia < 10) ? ("0" + dia) : dia;
+            var fechaFinal = dia+sep+mes+sep+anno;
+            return (fechaFinal);
+            }
+            
         </script>
 <script>
   $(document).ready(function () {

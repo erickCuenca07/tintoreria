@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Pedido ID</label>
-                    <input type="number" name="pedido_id" class="form-control" value="{{$pedido->numero_pedido}}">
+                    <input type="number" name="numero_pedido" class="form-control" value="{{$pedido->numero_pedido}}">
                 </div>      
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Cliente</label>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationDefault01">Fecha prevista</label>
-                    <input type="date" name="fecha_prevista" class="form-control" value="{{$pedido->fecha_prevista}}">
+                    <input type="text" name="fecha_prevista" class="form-control" value="{{$pedido->fecha_prevista}}">
                 </div>
             </div>
             <div class="row">
@@ -71,22 +71,23 @@
         <div class="modal-body">
             <form class="form-group" action="{{route('lineas.store')}}"  method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                @csrf
                 <input type="hidden" name='linea_pedido_id' size="50">
                 <input type="hidden" name='numero_pedido' size="50" value={{$pedido->numero_pedido}}>
 
                 <div class="form-group">
-                    <label for="disabledTextInput">Prenda Id</label>
-                        <select name='prenda_id' id='prenda_id' class="custom-select">
-                            <option  selected>Elige una Prenda</option>
+                    <label for="disabledTextInput">Prenda </label>
+                        <select name='prenda_id' id='prenda_id' class="custom-select" required>
+                            <option value="" selected>Elige una Prenda</option>
                                  @foreach ($prenda as $prenda)
                                     <option value="{{$prenda->prenda_id}}">{{$prenda->nombre}}</option>
                                 @endforeach
                         </select>
                 </div>
                 <div class="form-group">
-                    <label for="disabledTextInput">Servicio Id</label>
-                    <select name='servicio_id' id='servicio_id' class="custom-select">
-                        <option  selected>Elige un Servicio</option>
+                    <label for="disabledTextInput">Servicio </label>
+                    <select name='servicio_id' id='servicio_id' class="custom-select" required>
+                        <option value="" selected>Elige un Servicio</option>
                              @foreach ($servicio as $servicio)
                                 <option value="{{$servicio->servicio_id}}">{{$servicio->nombre}}</option>
                             @endforeach
@@ -94,7 +95,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Precio</label>
-                    <input class="form-control"  rows="3" placeholder="Precio..." name="precio" required>
+                    <input class="form-control"  rows="3" placeholder="Precio..." name="precio" id="precio" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Cantidad</label>
@@ -132,7 +133,7 @@
                     <td>{{$key->servicio->nombre}}</td>
                     <td>{{$key->cantidad}}</td>
                     <td>{{$key->precio}}</td>
-                    <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-">Editar
+                    <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$key->linea_pedido_id}}">Editar
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -151,8 +152,19 @@
     </div>
 </div>
 
-{{-- modal para eliminar prenda --}}
-{{-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="card">
+    <div class="card-body">
+            <div class="col-md-2">
+                <label>Total de la Compra</label>
+                <input type="text" value="{{$pedido->total()}}" class="form-control" readonly>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+@if(isset($key->linea_pedido_id))
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -165,6 +177,7 @@
           <form action="{{route('lineas.destroy',$key->linea_pedido_id)}}" method="post" enctype="multipart/form-data">   
             @csrf
             @method('delete')
+            <input type="hidden" name="numero_pedido" value="{{$pedido->numero_pedido}}">
             ¿Estas seguro que quieres eliminar esta prenda?
         </div>
         <div class="modal-footer">
@@ -174,7 +187,11 @@
       </form>
       </div>
     </div>
-</div> --}}
+</div>
+</div>
+@else
+
+@endif
 
 @stop
 
@@ -183,6 +200,45 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+
+        $("#prenda_id").change(function(){
+            $("#servicio_id").prop('selectedIndex',0);
+            $("#precio").val('');
+        })
+            
+        $("#servicio_id").change(function(){
+    
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var id=$("select[name=prenda_id]").val();
+            var servicio=$("select[name=servicio_id]").val();
+            if(servicio!=''){
+            if (id!=0){
+            $.ajax({
+                url: '{{route('ajax.tarifa')}}',
+                method:'post',
+                data:{'prenda_id':id,'servicio_id':servicio},
+                success:function(data){
+                    var datos=JSON.parse(data);
+                    console.log(datos);
+                    $("#precio").val(datos[0].precio);
+                    
+                }
+            });
+            
+            }else{
+                alert("Producto no seleccionado");
+            }
+            }    
+        });
+    });
+        </script>
 <script>
   $(document).ready(function () {
       $('#example').DataTable({

@@ -16,7 +16,7 @@ class PedidoController extends Controller
     {
         $pedido=Pedido::all();
         $cliente=Cliente::all();
-        return view('lista',compact('pedido','cliente'));
+        return view('lista',['pedido'=>$pedido, 'cliente'=>$cliente]);
     }
 
     public function create()
@@ -50,16 +50,16 @@ class PedidoController extends Controller
     public function edit($num)
     {
         $pedido=Pedido::find($num);
-       $prenda=Prenda::all();
-       $servicio=Servicio::all();
-       $linea=LineaPedido::all();
+        $prenda=Prenda::all();
+        $servicio=Servicio::all();
+        $linea=LineaPedido::all();
         return view('factura',['pedido'=>$pedido,'prenda'=>$prenda,'servicio'=>$servicio,'linea'=>$linea]);
     }
 
     public function update(Request $request, $id)
     {
         $id = Pedido::find($id);
-        $id->numero_pedido = $request->pedido_id;
+        $id->numero_pedido = $request->numero_pedido;
         $id->cliente_id = $request->cliente_id;
         $id->fecha_recibo= $request->fecha_actual;
         $id->fecha_prevista = $request->fecha_prevista;
@@ -91,6 +91,6 @@ class PedidoController extends Controller
         
         $numero_pedido->delete();
 
-        return redirect()->back();
+        return redirect()->back(); 
     }
 }

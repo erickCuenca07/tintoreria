@@ -1,5 +1,5 @@
   <!-- Modal Para Actualizar-->
-  <div class="modal fade" id="actualizar-" aria-hidden="true">
+  <div class="modal fade" id="actualizar-{{$key->linea_pedido_id}}" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">

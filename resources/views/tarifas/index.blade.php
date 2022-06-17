@@ -18,8 +18,8 @@
             <thead>
                 <tr>
                 <th scope='col' class='center'>Tarifa id</th>
-                <th scope='col' class='center'>Prenda id</th>
-                <th scope='col' class='center'>Servicio id</th>
+                <th scope='col' class='center'>Prenda </th>
+                <th scope='col' class='center'>Servicio </th>
                 <th scope='col' class='center'>Precio</th>
                 <th scope='col' class='center'>Operacionces</th>
                 </tr>
