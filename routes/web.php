@@ -11,6 +11,7 @@ use App\Http\Controllers\LineaPedidoController;
 use App\Http\Controllers\CategoriaoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ImprimirController;
 
 
 /*
@@ -37,7 +38,8 @@ Route::resource('lineas',LineaPedidoController::class)->middleware('auth');
 //rutas del ajax
 Route::post('ajax/tarifa',[AjaxController::class,'precio'])->name('ajax.tarifa');
 Route::post('ajax/cliente',[AjaxController::class,'cliente'])->name('ajax.cliente');
-
+//imprimir 
+Route::resource('imprimir', ImprimirController::class);
 //login
 Route::get('/login',[LoginController::class,'index'])->name('login.index');
 Route::post('/login',[LoginController::class,'store'])->name('login.store');

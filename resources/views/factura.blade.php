@@ -159,6 +159,7 @@
                 <input type="text" value="{{$pedido->total()}}" class="form-control" readonly>
             </div>
             <br>
+            <a href="{{route('imprimir.edit',$pedido->numero_pedido)}}" class="btn btn-primary">Imprimir</a>
         </div>
     </div>
 </div>
