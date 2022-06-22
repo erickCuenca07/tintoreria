@@ -12,8 +12,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="form-group">
-                    <label for="disabledTextInput">Id</label>
-                    <input type="text" class="form-control" value="{{$categoria->categoria_id}}" name="categoria_id" >
+                    <input type="hidden" class="form-control" value="{{$categoria->categoria_id}}" name="categoria_id" >
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Nombre</label>

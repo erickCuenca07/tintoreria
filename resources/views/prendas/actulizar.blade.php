@@ -13,8 +13,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="form-group">
-                    <label for="disabledTextInput">Id</label>
-                    <input type="text" class="form-control" value="{{$prenda->prenda_id}}" name="prenda_id" >
+                    <input type="hidden" class="form-control" value="{{$prenda->prenda_id}}" name="prenda_id" >
                 </div>
                 <div class="form-group">
                     <label for="disabledTextInput">Nombre</label>

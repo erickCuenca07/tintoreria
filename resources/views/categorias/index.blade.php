@@ -17,7 +17,6 @@
         <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
             <thead>
                 <tr>
-                <th scope='col' class='center'>id</th>
                 <th scope='col' class='center'>Nombre</th>
                 <th scope='col' class='center'>Foto</th>
                 <th scope='col' class='center'>Operacionces</th>
@@ -26,7 +25,6 @@
             <tbody>
             @foreach ($categoria as $categoria)
                     <tr>
-                        <th scope="row">{{$categoria->categoria_id}}</th>
                         <td>{{$categoria->nombre}}</td>
                         <td><img src="{{$categoria->foto}}" width="70"></td>
                         <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar-{{$categoria->categoria_id}}">Editar

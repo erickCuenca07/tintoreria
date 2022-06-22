@@ -17,7 +17,6 @@
             <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
             <thead>
                 <tr>
-                <th scope='col' class='center'>Tarifa id</th>
                 <th scope='col' class='center'>Prenda </th>
                 <th scope='col' class='center'>Servicio </th>
                 <th scope='col' class='center'>Precio</th>
@@ -27,7 +26,6 @@
             <tbody>
                 @foreach ($tarifa as $tarifa)
                     <tr>
-                        <td scope="row">{{$tarifa->tarifa_id}}</td>
                         <td scope="row">{{$tarifa->prendas->nombre}}</td>
                         <td>{{$tarifa->servicios->nombre}}</td>
                         <td>{{$tarifa->precio}}</td>

@@ -17,8 +17,7 @@
   <div class="card-body">
             <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
                 <thead>
-                    <tr>
-                    <th scope='col' class='center'>Cliente Id</th>
+                    <tr> 
                     <th scope='col' class='center'>Nif</th>
                     <th scope='col' class='center'>Nombre</th>
                     <th scope='col' class='center'>Telefono</th>
@@ -32,7 +31,6 @@
                 <tbody>
                 @foreach ($clientes as $cliente)
                         <tr>
-                            <th scope="row">{{$cliente->cliente_id}}</th>
                             <td>{{$cliente->nif}}</td>
                             <td>{{$cliente->nombre}}</td>
                             <td>{{$cliente->telefono}}</td>

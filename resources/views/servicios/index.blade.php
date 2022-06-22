@@ -17,7 +17,6 @@
         <table id="example" class="table align-middle mb-0 bg-white " cellspacing="0" width="100%">
             <thead>
                 <tr>
-                <th scope='col' class='center'>Servicio id</th>
                 <th scope='col' class='center'>Nombre</th>
                 <th scope='col' class='center'>Descripcion</th>
                 <th scope='col' class='center'>Foto</th>
@@ -27,7 +26,6 @@
             <tbody>
             @foreach ($servicios as $servicio)
                     <tr>
-                        <th scope="row">{{$servicio->servicio_id}}</th>
                         <td>{{$servicio->nombre}}</td>
                         <td>{{$servicio->descripcion}}</td>
                         <td><img src="{{$servicio->foto}}" width="70"></td>

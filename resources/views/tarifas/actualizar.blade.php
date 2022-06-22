@@ -13,16 +13,17 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="form-group">
-                    <label for="disabledTextInput">Tarifa Id</label>
-                    <input type="text" class="form-control" value="{{$tarifa->tarifa_id}}" name="tarifa_id" >
+                    <input type="hidden" class="form-control" value="{{$tarifa->tarifa_id}}" name="tarifa_id" >
                 </div>
                 <div class="form-group">
-                    <label for="disabledTextInput">Prenda Id</label>
-                    <input type="text" class="form-control" value="{{$tarifa->prenda_id}}" name="prenda_id" >
+                    <label for="disabledTextInput">Prenda </label>
+                    <input type="text" class="form-control" value="{{$tarifa->prendas->nombre}}" >
+                    <input type="hidden" class="form-control" value="{{$tarifa->prenda_id}}" name="prenda_id" >
                 </div>
                 <div class="form-group">
-                    <label for="disabledTextInput">Servicio Id</label>
-                    <input type="text" class="form-control"  value="{{$tarifa->servicio_id}}" name="servicio_id" >
+                    <label for="disabledTextInput">Servicio </label>
+                    <input type="text" class="form-control" value="{{$tarifa->servicios->nombre}}">
+                    <input type="hidden" class="form-control"  value="{{$tarifa->servicio_id}}" name="servicio_id" >
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Precio</label>
